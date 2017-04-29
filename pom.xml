@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.geekcap.vmturbo</groupId>
-  <artifactId>hello-world-servlet-example</artifactId>
+  <artifactId>java-example</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>hello-world-servlet-example Maven Webapp</name>
@@ -28,7 +28,7 @@
       </dependency>
   </dependencies>
     <build>
-        <finalName>helloworld</finalName>
+        <finalName>java-example</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
