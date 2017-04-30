@@ -10,7 +10,7 @@ stage ('Test Cases Execution'){
 }
 
 stage ('Sonar Analysis'){
-	sh 'mvn sonar:sonar -Durl=http://localhost:9000/sonar'
+	sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000/sonar'
 }
 	
 stage('Code Coverage ') {
