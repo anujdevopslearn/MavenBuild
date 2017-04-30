@@ -1,6 +1,7 @@
 node {
 
 stage ('build'){
+	checkout scm
 	sh 'mvn clean install'
 }
 
