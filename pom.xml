@@ -5,7 +5,6 @@
   <artifactId>java-example</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>hello-world-servlet-example Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
         <dependency>
@@ -41,4 +40,36 @@
             </plugin>
         </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>coverage-per-test</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <!-- Minimal supported version is 2.4 -->
+            <version>2.13</version>
+            <configuration>
+              <properties>
+                <property>
+                  <name>listener</name>
+                  <value>org.sonar.java.jacoco.JUnitListener</value>
+                </property>
+              </properties>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.sonarsource.java</groupId>
+          <artifactId>sonar-jacoco-listeners</artifactId>
+          <version>3.8</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 </project>
