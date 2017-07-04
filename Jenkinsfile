@@ -5,7 +5,7 @@ stage ('checkout code'){
 }
 	
 stage ('build'){
-	def MVNHOME= tool 'Maven3'
+	def MVNHOME = tool 'Maven3'
 	sh '${MVNHOME}/bin/mvn clean install'
 }
 
