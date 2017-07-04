@@ -6,11 +6,11 @@ stage ('checkout code'){
 	
 stage ('build'){
 	def MVNHOME= tool 'Maven3'
-	sh '${MVNHOME}\bin\mvn clean install'
+	sh '${MVNHOME}/bin/mvn clean install'
 }
 
 stage ('Test Cases Execution'){
-	sh '${MVNHOME}\bin\mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test'
+	sh '${MVNHOME}/bin/mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test'
 }
 
 stage ('Sonar Analysis'){
