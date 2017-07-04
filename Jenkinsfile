@@ -5,6 +5,7 @@ stage ('checkout code'){
 }
 	
 stage ('build'){
+	tool 'Maven3'
 	sh 'mvn clean install'
 }
 
