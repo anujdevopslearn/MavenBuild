@@ -1,11 +1,12 @@
 node('master') {
 
+	def MVNHOME = tool 'Maven3'
+	
 stage ('checkout code'){
 	checkout scm
 }
 	
 stage ('build'){
-	def MVNHOME = tool 'Maven3'
 	sh "${MVNHOME}/bin/mvn clean install"
 }
 
