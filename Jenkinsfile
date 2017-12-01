@@ -13,6 +13,10 @@ stage ('build'){
 stage ('Test Cases Execution'){
 	sh "${MVNHOME}/bin/mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
 }
+	
+stage ('Integration Test'){
+	sh ""
+}
 
 stage ('Sonar Analysis'){
 	//sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000/sonar'
