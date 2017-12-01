@@ -1,4 +1,4 @@
-node('Slave') {
+node('master') {
 
 	def MVNHOME = tool 'Maven3'
 	
