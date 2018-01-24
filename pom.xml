@@ -26,7 +26,6 @@
           <scope>test</scope>
       </dependency>
   </dependencies>
-  
     <build>
         <finalName>java-example</finalName>
         <plugins>
