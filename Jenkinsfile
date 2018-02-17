@@ -1,6 +1,6 @@
 node('master') {
 
-	def MVNHOME = tool 'Maven3'
+	def MVNHOME = tool 'Maven'
 	
 stage ('checkout code'){
 	checkout scm
