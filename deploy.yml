@@ -6,5 +6,5 @@
 
   tasks:
   - name: Copy WAR to server
-    copy: src=/var/lib/jenkins/workspace/Ansible/target/java-example.war dest={{ warRemotePath }}/{{ warName }} remote_src=yes
+    copy: src=target/java-example.war dest={{ warRemotePath }}/{{ warName }} 
     
