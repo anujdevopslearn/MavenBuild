@@ -2,7 +2,7 @@
 - hosts: all
   vars:
   - warName: helloworld.war
-  - warRemotePath: /opt/apache-tomcat-8.5.30/webapps
+  - warRemotePath: /opt/tomcat/webapps
 
   tasks:
   - name: Copy WAR to server
