@@ -1,17 +1,17 @@
 node('master') {
 
-	def MVNHOME = tool 'Maven'
+	//def MVNHOME = tool 'Maven'
 	
 stage ('checkout code'){
 	checkout scm
 }
 	
 stage ('build'){
-	sh "${MVNHOME}/bin/mvn clean install"
+	sh "mvn clean install"
 }
 
 stage ('Test Cases Execution'){
-	sh "${MVNHOME}/bin/mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
+	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
 }
 	
 stage ('Integration Test'){
