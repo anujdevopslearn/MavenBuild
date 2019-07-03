@@ -19,7 +19,7 @@ stage ('Integration Test'){
 }
 
 stage ('Sonar Analysis'){
-	sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:80'
+	//sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:80'
 }
 	
 stage('Code Coverage ') {
