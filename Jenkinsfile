@@ -16,11 +16,6 @@ stage ('Sonar Analysis'){
 	//sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:80'
 }
 
-stage ('Publish Junit HTML Report') {
-      publishHTML(target: [allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true,
-                reportDir: 'target/reports/html', reportFiles: 'index.html', reportName: 'Test Suite HTML Report' ])
-}
-
 stage ('Archive Artifacts'){
 	archiveArtifacts artifacts: 'target/*.war'
 }
