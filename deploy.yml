@@ -6,4 +6,4 @@
 
   tasks:
   - name: Copy WAR to server
-    copy: src=target/java-example.war dest={{ warRemotePath }}/{{ warName }} 
+    copy: src=target/java-example.war dest={{ warRemotePath }}/{{ warName }}
