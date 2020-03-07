@@ -1,5 +1,4 @@
 node('master') {
-
 	stage ('checkout code'){
 		checkout scm
 	}
