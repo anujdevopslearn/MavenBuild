@@ -1,5 +1,5 @@
 ---
-- hosts: buildservers
+- hosts: buildserver
   vars:
   - warName: java-example-0.0.1-SNAPSHOT.war
   - tomcat_version: 8.5.53
