@@ -1,9 +1,11 @@
 ---
-- hosts: webservers
+- hosts: buildservers
   vars:
-  - warName: helloworld.war
-  - warRemotePath: /opt/apache-tomcat-8.5.41/webapps
+  - warName: java-example-0.0.1-SNAPSHOT.war
+  - tomcat_version: 8.5.53
+  - warRemotePath: /opt/apache-tomcat-{{ tomcat_version }}/webapps
 
   tasks:
-  - name: Copy WAR to server
-    copy: src=target/java-example.war dest={{ warRemotePath }}/{{ warName }}
+  - name: Copy WAR to Remote server
+    copy: src=target/{{ warName }} remote_src=yes dest={{ warRemotePath }}/{{ warName }} owner=tomcat group=tomcat
+   
