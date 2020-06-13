@@ -2,7 +2,7 @@
 - hosts: webservers
   vars:
   - warName: java-example.war
-  - tomcat_version: 8.5.53
+  - tomcat_version: 8.5.56
   - warRemotePath: /opt/apache-tomcat-{{ tomcat_version }}/webapps
 
   tasks:
