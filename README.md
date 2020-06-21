@@ -1,5 +1,3 @@
-[![Build Status](https://dev.azure.com/simplilearn/Simplilearn-Azure/_apis/build/status/anujdevopslearn.MavenBuild?branchName=master)](https://dev.azure.com/simplilearn/Simplilearn-Azure/_build/latest?definitionId=2&branchName=master)
-
 HelloWorld Servlet example with corresponding Dockerfile
 
 Use Maven Build first to create war file in Target folder.
