@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html>
+<html lang="">
 <head>
   <title>Some relevant title</title>
 </head>
