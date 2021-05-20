@@ -1,4 +1,5 @@
 node('master') {
+  ansiColor('xterm') {
 	stage ('checkout code'){
 		checkout scm
 	}
@@ -33,4 +34,5 @@ node('master') {
 		      to: "anuj_sharma401@yahoo.com"
 		    )
 	}
+   }
 }
