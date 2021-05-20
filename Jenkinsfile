@@ -20,7 +20,10 @@ node('master') {
 	}
 	
 	stage ('Deployment'){
-		//sh 'cp target/*.war /opt/tomcat8/webapps'
+		ansiblePlaybook( 
+        		playbook: 'deploy.yml',
+        		inventory: '/etc/ansible/hosts', 
+        		colorized: true) 
 	}
 	stage ('Notification'){
 		//slackSend color: 'good', message: 'Deployment Sucessful'
