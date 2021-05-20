@@ -24,6 +24,7 @@ node('master') {
 		ansiblePlaybook( 
         		playbook: 'deploy.yml',
         		inventory: '/etc/ansible/hosts', 
+			extras: '--become'
         		colorized: true) 
 	}
 	stage ('Notification'){
