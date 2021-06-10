@@ -21,11 +21,11 @@ node('master') {
 	}
 	
 	stage ('Deployment'){
-		ansiblePlaybook( 
+		/*ansiblePlaybook( 
         		playbook: 'deploy.yml',
         		inventory: '/etc/ansible/hosts', 
 			extras: '--become',
-        		colorized: true) 
+        		colorized: true) */
 	}
 	stage ('Notification'){
 		//slackSend color: 'good', message: 'Deployment Sucessful'
