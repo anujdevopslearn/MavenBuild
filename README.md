@@ -1,4 +1,4 @@
-Hello Planet Jupiter .. Mike has taken over
+Hello Planet Mercury.. Ayomikun has taken over
 
  Servlet example with corresponding Dockerfile
 
