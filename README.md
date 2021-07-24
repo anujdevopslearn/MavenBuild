@@ -1,4 +1,4 @@
-Hello Planet EArth .. Mike has taken over
+Hello Planet Mars .. Mike has taken over
 
  Servlet example with corresponding Dockerfile
 
