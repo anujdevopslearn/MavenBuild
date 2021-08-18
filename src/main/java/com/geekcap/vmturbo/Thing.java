@@ -6,7 +6,7 @@ public class Thing {
   public int getN() {
     return n;
   }
-
+,78
   public void setN(int n) {
     this.n = n;
   }
