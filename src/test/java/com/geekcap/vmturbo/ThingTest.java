@@ -1,4 +1,4 @@
-package1 com.geekcap.vmturbo;
+package com.geekcap.vmturbo;
 
 import org.junit.Assert;
 import org.junit.Test;
