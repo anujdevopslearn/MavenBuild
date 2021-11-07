@@ -1,5 +1,4 @@
 node('master') {
-//  ansiColor('xterm') {
 	stage ('checkout code'){
 		checkout scm
 	}
@@ -24,12 +23,10 @@ node('master') {
 		//deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: 'http://52.90.29.200:8080/')], contextPath: null, war: 'target/*.war'
 	}
 	stage ('Notification'){
-		//slackSend color: 'good', message: 'Deployment Sucessful'
 		emailext (
 		      subject: "Job Completed",
 		      body: "Jenkins Pipeline Job for Maven Build got completed !!!",
-		      to: "anuj_sharma401@yahoo.com"
+		      to: "build-alerts@example.com"
 		    )
 	}
-  // }
 }
