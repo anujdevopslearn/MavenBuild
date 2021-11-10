@@ -1,4 +1,4 @@
-node('slave-agent') {
+node('master') {
 	stage ('checkout code'){
 		checkout scm
 	}
