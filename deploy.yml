@@ -1,8 +1,8 @@
 ---
-- hosts: tomcatservers
+- hosts: webservers
   vars:
   - warName: java-example.war
-  - warRemotePath: /var/lib/tomcat9/webapps
+  - warRemotePath: /opt/apache-tomcat-8.5.73/webapps/
 
   tasks:
   - name: Copy WAR to Remote server
