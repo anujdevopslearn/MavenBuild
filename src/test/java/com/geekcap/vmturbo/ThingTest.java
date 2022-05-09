@@ -1,17 +1,18 @@
 package com.geekcap.vmturbo;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 
 /**
  * Created by shaines on 7/24/16.
  */
-public class ThingTest {
+class ThingTest {
 
     @Test
-    public void testN() {
+    void testN() {
         Thing t = new Thing();
         t.setN(5);
-        Assert.assertEquals("N should be 5", 5, t.getN());
+        Assertions.assertEquals(5, t.getN(), "N should be 5");
     }
 }
