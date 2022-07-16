@@ -2,7 +2,7 @@ node() {
 
 	def sonarScanner = tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
 	stage('Code'){
-		checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/anujdevopslearn/MavenBuild']]]
+		checkout scm
 	}
 	
 	stage('Build Automation'){
