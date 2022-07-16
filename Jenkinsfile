@@ -1,25 +1,32 @@
-node('') {
-	stage ('checkout code'){
-		checkout scm
+node() {
+
+	def sonarScanner = tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+	stage('Code'){
+		checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/anujdevopslearn/MavenBuild']]]
 	}
 	
-	stage ('Build'){
-		sh "mvn clean install -Dmaven.test.skip=true"
+	stage('Build Automation'){
+		sh """
+			ls -alrt
+			mvn clean install
+		"""
 	}
 
-	stage ('Test Cases Execution'){
-		sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
-	}
+	stage('Archive Artifacts'){
 
-	stage ('Sonar Analysis'){
-		//sh 'mvn sonar:sonar -Dsonar.host.url=http://35.153.67.119:9000 -Dsonar.login=77467cfd2653653ad3b35463fbfdb09285f08be5'
-	}
-
-	stage ('Archive Artifacts'){
-		archiveArtifacts artifacts: 'target/*.war'
 	}
 	
-	stage ('Deployment'){
-		//deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: 'http://3.84.47.228:8080/')], contextPath: 'counterwebapp', war: 'target/*.war'
+	stage('Code Review'){
+		withSonarQubeEnv(credentialsId: 'SonarQubeCreds') {
+			sh "${sonarScanner}/bin/sonar-scanner"
+		}
+	}
+	
+	stage('Deployment'){
+		deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: 'http://35.172.235.200:8080/')], contextPath: 'CounterApp', onFailure: false, war: 'target/*.war'
+	}	
+	
+	stage('Notification'){
+		
 	}
 }
