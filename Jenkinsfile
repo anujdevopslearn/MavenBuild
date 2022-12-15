@@ -13,9 +13,5 @@ node() {
 
 	stage('Archive Artifacts'){
 
-	}    
-	
-	stage('Deployment'){
-	sh 'Deployed'
-	}
+	} 
 }
