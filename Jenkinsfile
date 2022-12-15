@@ -1,33 +1,35 @@
-node('') {
-	stage ('checkout code'){
+node() {
+
+	def sonarScanner = tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+	stage('Code'){
 		checkout scm
 	}
 	
-	stage ('Build'){
-		sh "mvn clean install -Dmaven.test.skip=true"
+	stage('Build Automation'){
+		sh """
+			ls -alrt
+			mvn clean install
+		"""
 	}
 
-	stage ('Test Cases Execution'){
-		sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
-	}
+	stage('Archive Artifacts'){
 
-	stage ('Sonar Analysis'){
-		//sh 'mvn sonar:sonar -Dsonar.host.url=http://35.153.67.119:9000 -Dsonar.login=77467cfd2653653ad3b35463fbfdb09285f08be5'
-	}
-
-	stage ('Archive Artifacts'){
-		archiveArtifacts artifacts: 'target/*.war'
 	}
 	
 	stage ('Deployment'){
 		ansiblePlaybook colorized: true, disableHostKeyChecking: true, playbook: 'deploy.yml'
+    
+	stage('Code Review'){
+		withSonarQubeEnv(credentialsId: 'SonarQubeCreds') {
+			//sh "${sonarScanner}/bin/sonar-scanner"
+		}
 	}
 	
-	stage ('Notification'){
-		emailext (
-		      subject: "Job Completed",
-		      body: "Jenkins Pipeline Job for Maven Build got completed !!!",
-		      to: "build-alerts@example.com"
-		    )
+	stage('Deployment'){
+		deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: 'http://3.233.237.166:8080/')], contextPath: 'CounterApp', onFailure: false, war: 'target/*.war'
+	}	
+	
+	stage('Notification'){
+		
 	}
 }
