@@ -22,7 +22,7 @@ node('') {
 	stage ('Deployment'){
 		deploy adapters: {tomcat9(credentalsId: 'deployer_user1', path: '', url: 'http://3.90.61.225:8080')}, contectPath: null,
 		war: 'target/*.war'
-		ansiblePlaybook colorized: true, disableHostKeyChecking: true, playbook: 'deploy.yml'
+		//ansiblePlaybook colorized: true, disableHostKeyChecking: true, playbook: 'deploy.yml'
 	}
 	
 	stage ('Notification'){
