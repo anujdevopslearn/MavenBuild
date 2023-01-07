@@ -21,7 +21,7 @@ node('') {
 	
 	stage ('Deployment'){
 		deploy adapters: {tomcat9(credentalsId: 'deployer_user1', path: '', url: 'http://3.90.61.225:8080')}, contectPath: null,
-		war: 'target/*.war'
+		war: sh 'cp target/app.war $TOMCAT_HOME/webapps'
 		//ansiblePlaybook colorized: true, disableHostKeyChecking: true, playbook: 'deploy.yml'
 	}
 	
@@ -29,7 +29,7 @@ node('') {
 		emailext (
 		      subject: "Job Completed",
 		      body: "Jenkins Pipeline Job for Maven Build got completed !!!",
-		      to: "build-alerts@example.com"
+		      to: "mesther.phatlane@gmail.com"
 		    )
 	}
 }
