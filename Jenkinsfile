@@ -21,7 +21,7 @@ node('') {
 	
 	stage ('Deployment'){
 		deploy adapters: {tomcat9(credentalsId: 'deployer_user1', path: '', url: 'http://3.90.61.225:8080')}, contectPath: null,
-		war: sh 'cp target/app.war $TOMCAT_HOME/webapps'
+		war:  'target/* .war'
 		//ansiblePlaybook colorized: true, disableHostKeyChecking: true, playbook: 'deploy.yml'
 	}
 	
