@@ -3,11 +3,11 @@ run-name: Testing out GitHub Actions Event Trigger
 on:
   push:
     branches:
-      - main
+      - master
       - 'releases/**'
   pull_request:
     branches:    
-      - main
+      - master
       - 'releases/**'
 jobs:
   Basic-Workflow:
