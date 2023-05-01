@@ -5,10 +5,4 @@ on:
 
 jobs:
   Reusable-caller-job:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Invoking Reusable Workflow
-        uses: anujdevopslearn/MavenBuild/.github/workflows/basic-workflow.yml@master
+    uses: ./.github/workflows/basic-workflow.yml
