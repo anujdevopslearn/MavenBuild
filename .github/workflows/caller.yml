@@ -11,4 +11,4 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Invoking Reusable Workflow
-        uses: ./.github/workflows/basic-workflow.yml
+        uses: anujdevopslearn/MavenBuild/.github/workflows/basic-workflow.yml@master
