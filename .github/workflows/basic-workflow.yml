@@ -2,6 +2,7 @@ name: GitHub Actions Reusable Workflow
 run-name: GitHub Action Reusable Workflow
 on:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   Basic-Workflow:
