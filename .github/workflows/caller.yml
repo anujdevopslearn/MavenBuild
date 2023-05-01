@@ -2,7 +2,7 @@ name: Reusable Workflow Caller
 
 on:
   workflow_dispatch:
-  push
+  push:
 
 jobs:
   caller-job:
@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-	  - name: Invoking Reusable Workflow
-	    uses: .github/workflows/basic-workflow.yml
+      - name: Invoking Reusable Workflow
+        uses: ./.github/workflows/basic-workflow.yml
