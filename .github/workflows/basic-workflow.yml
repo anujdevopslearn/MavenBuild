@@ -1,7 +1,8 @@
-name: GitHub Actions Demo
+name: GitHub Actions Reusable Workflow
 run-name: GitHub Action Reusable Workflow
 on:
   workflow_dispatch:
+
 jobs:
   Basic-Workflow:
     runs-on: ubuntu-latest
