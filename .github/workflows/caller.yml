@@ -1,11 +1,10 @@
 name: Reusable Workflow Caller
 
 on:
-  workflow_dispatch:
   push:
 
 jobs:
-  caller-job:
+  Reusable-caller-job:
     runs-on: ubuntu-latest
 
     steps:
