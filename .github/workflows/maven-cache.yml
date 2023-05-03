@@ -5,10 +5,10 @@ on:
 concurrency:
   group: environment-${{ github.ref }}
   cancel-in-progress: true
-environment:
-  pomfile: pom.xml
 jobs:
   maven_build:
+    environment:
+       pomfile: pom.xml
     strategy:
       matrix:
         version: [11, 8]
