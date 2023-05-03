@@ -17,8 +17,3 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Step 3 - Use the Upload Artifact GitHub Action
-      uses: actions/upload-artifact@v3
-      with: 
-        name: MavenArtifacts
-        path: "target/*.war"
