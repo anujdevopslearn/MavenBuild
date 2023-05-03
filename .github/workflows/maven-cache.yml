@@ -7,7 +7,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   maven_build:
-    environment:
+    env:
        pomfile: pom.xml
     strategy:
       matrix:
