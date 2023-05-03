@@ -8,7 +8,7 @@ concurrency:
 jobs:
   maven_build:
     env:
-       pomfile: pom.xml
+       pomfile: "pom.xml"
     strategy:
       matrix:
         version: [11, 8]
