@@ -27,4 +27,4 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-cache
     - name: Build with Maven
-      run: mvn -B package --file ${{ pomfile }}
+      run: mvn -B package --file ${{ env.pomfile }}
