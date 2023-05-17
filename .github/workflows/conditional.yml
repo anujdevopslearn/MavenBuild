@@ -2,7 +2,7 @@ name: Conditional Workflow Execution
 on: [push]
 jobs:
   production-deploy:
-    if: github.GITHUB_REF_NAME == 'master'
+    if: GITHUB_REF_NAME == 'master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
