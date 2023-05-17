@@ -1,0 +1,9 @@
+name: Basic Action workflow
+on: push
+
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Basic Action Setup
+        run: echo "GitHub Action Workflow"
