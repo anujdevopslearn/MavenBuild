@@ -7,11 +7,12 @@ jobs:
   build_job:
     runs-on: windows-latest
     steps:
-      - name: Execute Command
-        run: echo "Build Automation for Application:${{ env.appName }}"
-      - name: Executing Build Step
-        id: exec
-        run: exit 1
-      - name: Check if previous steps is success or failure
-        run: echo "Running on failure"
-        if: ${{ failure() && steps.exec.conclusion == 'failure' }}
+      - name: Cache
+        uses: actions/cache@v1.2.1
+        with:
+           # A directory to store and save the cache
+           path: ""
+           # An explicit key for restoring and saving the cache
+           key: ""
+           # An ordered list of keys to use for restoring the cache if no cache hit occurred for key
+           restore-keys: ""
