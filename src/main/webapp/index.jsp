@@ -45,7 +45,7 @@
                 </header>                  
                 <div class="w3-container" style="padding:32px">                  
                     <h2>What is W3.CSS?</h2>                  
-                    <p>W3.CSS is a modern CSS framework with built-in responsiveness:</p>                  
+                    <p>W3.CSS is a modern CSS framework with built-in responsiveness: !!!</p>                  
                     <ul class="w3-leftbar w3-theme-border" style="list-style:none">
                         <li>Smaller and faster than other CSS frameworks.</li>
                         <li>Easier to learn, and easier to use than other CSS frameworks.</li>
