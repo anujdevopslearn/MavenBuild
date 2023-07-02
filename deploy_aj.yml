@@ -1,0 +1,9 @@
+---
+- hosts: myservers
+  vars:
+  - warName: java-example.war
+  - warRemotePath: /var/lib/tomcat9/webapps/
+
+  tasks:
+  - name: Copy WAR to Remote server using deploy.yaml in Jenkins
+    copy: src=target/{{ warName }} dest={{ warRemotePath }}/{{ warName }} owner=tomcat group=tomcat
