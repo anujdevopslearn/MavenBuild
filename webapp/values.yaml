@@ -1,0 +1,7 @@
+image:
+   name: anujsharma1990/docker-image
+   tag: latest
+replicascount: 2
+labels:
+   app: ais
+   tier: web
