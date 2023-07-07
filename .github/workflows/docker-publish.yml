@@ -40,8 +40,7 @@ jobs:
          password: ${{ secrets.PASSWORD }}
          port: ${{ secrets.PORT }}
          script: |
-           ls -lart 
-           pwd
+           git clone -b ${{ GITHUB_HEAD_REF }} ${{github.repository}}
            helm list -A
            helm install mavenbuild-dev ./webapp
            helm list -A
