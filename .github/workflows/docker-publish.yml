@@ -39,4 +39,8 @@ jobs:
          username: ${{ secrets.USERNAME }}
          password: ${{ secrets.PASSWORD }}
          port: ${{ secrets.PORT }}
-         script: kubectl get nodes
+         script: |
+           helm list -A
+           helm install mavenbuild-dev ./webapp
+           helm list -A
+           kubectl get all
