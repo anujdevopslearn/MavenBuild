@@ -41,7 +41,7 @@ jobs:
          port: ${{ secrets.PORT }}
          script: |
            git clone -b develop https://github.com/${{github.repository}} .
-           echo ${{ env.GITHUB_SERVER_URL }}
+           echo $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/
            helm list -A
            helm install mavenbuild-dev ./webapp
            helm list -A
