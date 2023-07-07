@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ais-ifm
+  labels:
+    app: ais
+spec:
+  replicas: {{ .Values.replicascount }}
+  selector:
+    matchLabels:
+{{toYaml .Values.labels | indent 6}}
+  template:
+    metadata:
+      labels:
+{{toYaml .Values.labels | indent 8}}
+    spec:
+      containers:
+      - name: ais
+        image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 8090
+        resources:
+          limits:  
+            cpu: 1000m
+            memory: 600Mi             
+          requests: 
+            cpu: 500m
+            memory: 300Mi
