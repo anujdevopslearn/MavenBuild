@@ -26,6 +26,6 @@ jobs:
           aws sts get-caller-identity
           aws eks update-kubeconfig --name fargate-cluster --region us-east-2
           kubectl get deployments -o wide
-          kubectl delete -f deployment.yaml
+          kubectl delete -f deployment.yaml | true
           kubectl apply -f deployment.yaml
           kubectl get deployments -o wide
