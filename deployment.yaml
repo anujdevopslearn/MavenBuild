@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplilearn
+  labels:
+    product: planview
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: planview
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: planview
+        tier: web
+    spec:
+      containers:
+      - name: bootcamp-container
+        image: jocatalin/kubernetes-bootcamp:v1
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:  
+            cpu: 1000m
+            memory: 600Mi             
+          requests: 
+            cpu: 500m
+            memory: 300Mi
