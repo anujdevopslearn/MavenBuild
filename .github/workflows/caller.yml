@@ -9,3 +9,16 @@ jobs:
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  Kubernetes-Deployment:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Configure AWS credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         aws-region: us-east-2
+     - name: Fetch Kube Config from EKS Service
+       run: |
+          aws sts get-caller-identity
+          aws eks update-kubeconfig --name fargate-cluster --region us-east-2
