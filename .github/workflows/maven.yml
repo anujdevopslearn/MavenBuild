@@ -35,3 +35,17 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+    - name: ssh scp ssh pipelines
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      with:
+       host: 54.224.208.16
+       user: ubuntu
+       key: ${{ secrets.DC_PASS }}
+       port: 22
+       connect_timeout: 10s
+       first_ssh: |
+        ls -alrt /var/lib/tomcat9/webapps
+       scp: |
+        './target/*.war' => /var/lib/tomcat9/webapps
+       last_ssh: |
+         ls -alrt /var/lib/tomcat9/webapps
