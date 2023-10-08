@@ -46,6 +46,7 @@ jobs:
        first_ssh: |
         ls -alrt /var/lib/tomcat9/webapps
        scp: |
-        './target/*.war' => /var/lib/tomcat9/webapps
+        './target/*.war' => /tmp/
        last_ssh: |
+         sudo cp /tmp/*.war /var/lib/tomcat9/webapps
          ls -alrt /var/lib/tomcat9/webapps
