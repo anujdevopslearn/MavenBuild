@@ -32,13 +32,18 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: "mvn -B ${mavenGoal} --file ${buildScript}"
-    - name: Check data
-      run: ls -lart
+    - uses: actions/upload-artifact@v3
+      with:
+       name: buildArtifact
+       path: target/*.war      
       
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
+     - uses: actions/download-artifact@v3
+       with:
+         name: buildArtifact
      - name: Production Deployment
        run: |
           ls -lart 
