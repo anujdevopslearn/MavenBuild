@@ -39,5 +39,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: Perform Code Deployment
-       run: echo "Proceeding with Deployment"
-  
+       run: |
+        if [ "${{ github.ref_name }}" ];then
+          echo "Proceeding with Production Deployment"
+        else
+          echo "Proceeding with Development Deployment"
+        fi
