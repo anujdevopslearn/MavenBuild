@@ -31,18 +31,14 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: "mvn -B ${mavenGoal} --file ${buildScript}"
-      
+      run: |
+        "mvn -B ${mavenGoal} --file ${buildScript}"
+        ls -alrt
       
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
      - name: Production Deployment
-       if: ${{ github.ref_name == 'master' }}
        run: |
-          echo "Proceeding with Production Deployment"
-     - name: Staging Deployment
-       if: ${{ github.ref_name == 'develop' }}
-       run: |
-          echo "Proceeding with Staging Deployment"  
+          ls -lart 
