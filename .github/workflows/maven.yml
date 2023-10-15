@@ -39,10 +39,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: Production Deployment
-       if: ${{ github.ref_name == "master" }}
+       if: ${{ github.ref_name }} == "master" 
        run: |
           echo "Proceeding with Production Deployment"
      - name: Staging Deployment
-       if: ${{ github.ref_name == "develop" }}
+       if: ${{ github.ref_name }} == "develop"
        run: |
           echo "Proceeding with Staging Deployment"  
