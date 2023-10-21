@@ -61,7 +61,7 @@ jobs:
          user: ${{ secrets.DC_USER }}
          key: ${{ secrets.DC_KEY }}
          scp: |
-          ./target/*.war => /tmp/
+          ./*.war => /tmp/
          last_ssh: |
             sudo cp /tmp/*.war /var/lib/tomcat9/webapps/ 
             ls -la
