@@ -60,7 +60,7 @@ jobs:
          host: ${{ secrets.DC_HOST }}
          user: ${{ secrets.DC_USER }}
          key: ${{ secrets.DC_KEY }}
-         scp  : |
+         scp: |
           ./*.war => /tmp/
          last_ssh: |
             sudo cp /tmp/*.war /var/lib/tomcat9/webapps/ 
