@@ -59,7 +59,7 @@ jobs:
        with:
          host: ${{ secrets.DC_HOST }}
          user: ${{ secrets.DC_USER }}
-         key: ${{ secrets.DC_KEY }}
+         pass: ${{ secrets.DC_KEY }}
          scp: |
           ./*.war => /tmp/
          last_ssh: |
