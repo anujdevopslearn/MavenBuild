@@ -41,6 +41,7 @@ jobs:
       with:
        name: buildArtifact
        path: target/*.war      
+      
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -51,3 +52,16 @@ jobs:
      - name: Production Deployment
        run: |
           ls -lart 
+     - name: scp ssh pipelines
+       uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+       env:
+         LASTSSH: "Doing something after copying"
+       with:
+         host: ${{ secrets.DC_HOST }}
+         user: ${{ secrets.DC_USER }}
+         pass: ${{ secrets.DC_KEY }}
+         scp: |
+          ./*.war => /tmp/
+         last_ssh: |
+            sudo cp /tmp/*.war /var/lib/tomcat9/webapps/Anuj.war
+            ls -la
