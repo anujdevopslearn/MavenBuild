@@ -37,31 +37,10 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-    - uses: actions/upload-artifact@v3
-      with:
-       name: buildArtifact
-       path: target/*.war      
-      
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/download-artifact@v3
-       with:
-         name: buildArtifact
      - name: Production Deployment
        run: |
           ls -lart 
-     - name: scp ssh pipelines
-       uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-       env:
-         LASTSSH: "Doing something after copying"
-       with:
-         host: ${{ secrets.DC_HOST }}
-         user: ${{ secrets.DC_USER }}
-         key: ${{ secrets.DC_KEY }}
-         scp: |
-          ./*.war => /tmp/
-         last_ssh: |
-            sudo cp /tmp/*.war /var/lib/tomcat9/webapps/ 
-            ls -la
