@@ -9,3 +9,6 @@ on:
 jobs:
   build:
     uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/maven.yml@main
+
+  deploy:
+    uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/tomcat.yml@main
