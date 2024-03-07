@@ -1,67 +1,11 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
+name: Maven Build CI/CD Pipeline
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "develop" ]
   pull_request:
     branches: [ "master" ]
-  workflow_dispatch:
 
-env:
-  mavenGoal: "clean install"
 jobs:
   build:
-    runs-on: ubuntu-latest
-    env:
-      buildScript: "pom.xml"
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: "mvn -B ${mavenGoal} --file ${buildScript}"
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-    - uses: actions/upload-artifact@v3
-      with:
-       name: buildArtifact
-       path: target/*.war      
-      
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-     - uses: actions/download-artifact@v3
-       with:
-         name: buildArtifact
-     - name: Production Deployment
-       run: |
-          ls -lart 
-     - name: scp ssh pipelines
-       uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-       env:
-         LASTSSH: "Doing something after copying"
-       with:
-         host: ${{ secrets.DC_HOST }}
-         user: ${{ secrets.DC_USER }}
-         pass: ${{ secrets.DC_KEY }}
-         scp: |
-          ./*.war => /tmp/
-         last_ssh: |
-            sudo cp /tmp/*.war /var/lib/tomcat9/webapps/Anuj.war
-            ls -la
+    uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/maven.yml@main
