@@ -23,3 +23,5 @@ jobs:
   test:
     needs: deploy
     uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/testing.yml@main
+    secrets:
+      git_token: ${{ secrets.TOKEN }}
