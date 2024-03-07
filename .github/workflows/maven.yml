@@ -9,7 +9,13 @@ on:
 jobs:
   build:
     uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/maven.yml@main
+    with:
+      build-script: pom.xml
 
   deploy:
     needs: build
     uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/tomcat.yml@main
+    secrets:
+       host: ${{ secrets.DC_HOST }}
+       user: ${{ secrets.DC_USER }}
+       password: ${{ secrets.DC_KEY }}
