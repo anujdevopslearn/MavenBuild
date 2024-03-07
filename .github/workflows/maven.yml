@@ -19,3 +19,7 @@ jobs:
        host: ${{ secrets.DC_HOST }}
        user: ${{ secrets.DC_USER }}
        password: ${{ secrets.DC_KEY }}
+
+  test:
+    needs: deploy
+    uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/testing.yml@main
