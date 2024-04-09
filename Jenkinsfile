@@ -2,6 +2,6 @@
 
 mavenBuild(
   gitURL = "https://github.com/anujdevopslearn/MavenBuild",
-  productType = "maven"
+  productType = "maven",
   pomfileName = "pom.xml"
 )
