@@ -30,6 +30,12 @@ stages:
         repository: 'tomcat'
         command: build
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'TempDockerRegistry'
+        repository: 'riaoct30/tomcat-test'
+        command: 'push'
       
 #    - task: Docker@2
 #      inputs: 
