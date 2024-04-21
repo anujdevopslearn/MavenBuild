@@ -27,7 +27,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'TempDockerRegistry'
-        repository: 'tomcat'
+        repository: 'tomcat-test'
         command: build
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         
