@@ -19,20 +19,42 @@ stages:
     displayName: Build
     pool: Default
     steps:
-    - task: Maven@4
-      inputs:
-        mavenPomFile: 'pom.xml'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        javaHomeOption: 'JDKVersion'
-        mavenVersionOption: 'Default'
-        mavenAuthenticateFeed: false
-        effectivePomSkip: false
-        sonarQubeRunAnalysis: false
+
+    - script: |
+        sudo apt-get update && sudo apt-get install -y maven
+        mvn clean install
+      displayName: 'Maven build'
     - task: Docker@2
-      displayName: Build an image
       inputs:
+        containerRegistry: 'TempDockerRegistry'
+        repository: 'tomcat'
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+      
+#    - task: Docker@2
+#      inputs: 
+#        containerRegistry: 'TempDockerRegistry'
+#        repository: 'riaoct30/tomcat8-java-webapp'
+#        command: push
+#        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+
+
+
+    #- task: Maven@4
+    #  inputs:
+    #    mavenPomFile: 'pom.xml'
+    #    publishJUnitResults: true
+    #    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    #    javaHomeOption: 'JDKVersion'
+    #    mavenVersionOption: 'Default'
+    #    mavenAuthenticateFeed: false
+    #    effectivePomSkip: false
+    #    sonarQubeRunAnalysis: false
+    #- task: Docker@2
+    #  displayName: Build an image
+    #  inputs:
+    #    command: build
+    #    dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+    #    tags: |
+    #    command: start
+    #    container: test-1
