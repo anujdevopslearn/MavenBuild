@@ -17,8 +17,7 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: ubuntu-latest
+    pool: Default
     steps:
     - task: Maven@4
       inputs:
