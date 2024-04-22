@@ -38,7 +38,7 @@ stages:
         repository: 'riaoct30/tomcat-test'
         command: buildAndPush
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-      retryCountOnTaskFailure: '2'
+      retryCountOnTaskFailure: '1'
 #      inputs: 
 #        containerRegistry: 'TempDockerRegistry'
 #        repository: 'riaoct30/tomcat8-java-webapp'
