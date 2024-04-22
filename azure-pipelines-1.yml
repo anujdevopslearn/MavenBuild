@@ -14,7 +14,7 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build image
+  displayName: Build and Push image
   jobs:
   - job: Build
     displayName: Build
@@ -24,16 +24,16 @@ stages:
     - script: |
         sudo apt-get update && sudo apt-get install -y maven
         mvn clean install
-      displayName: 'Maven build'
+#      displayName: 'Maven build'
 
     - task: Docker@2
-      displayName: 'Login to Docker Hub'
+      #displayName: 'Login to Docker Hub'
       inputs:
         containerRegistry: 'TempDockerRegistry'
         command: 'login'
 
     - task: Docker@2
-      displayName: 'Build and Push Docker Image'
+      #displayName: 'Build and Push Docker Image'
       inputs:
         containerRegistry: 'TempDockerRegistry'
         repository: 'riaoct30/tomcat-test'
