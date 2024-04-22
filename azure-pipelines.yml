@@ -24,23 +24,21 @@ stages:
         sudo apt-get update && sudo apt-get install -y maven
         mvn clean install
       displayName: 'Maven build'
+
     - task: Docker@2
-      displayName: 'Build Docker Image'
+      displayName: 'Login to Docker Hub'
       inputs:
         containerRegistry: 'TempDockerRegistry'
-        repository: 'tomcat-test'
-        command: build
-        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-      retryCountOnTaskFailure: '2'
-        
+        command: 'login'
+
     - task: Docker@2
-      displayName: 'Push to Docker-Hub'
+      displayName: 'Build and Push Docker Image'
       inputs:
         containerRegistry: 'TempDockerRegistry'
         repository: 'riaoct30/tomcat-test'
-        command: 'push'
-      
-#    - task: Docker@2
+        command: buildAndPush
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+      retryCountOnTaskFailure: '2'
 #      inputs: 
 #        containerRegistry: 'TempDockerRegistry'
 #        repository: 'riaoct30/tomcat8-java-webapp'
