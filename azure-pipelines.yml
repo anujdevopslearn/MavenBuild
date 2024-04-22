@@ -25,13 +25,16 @@ stages:
         mvn clean install
       displayName: 'Maven build'
     - task: Docker@2
+      displayName: 'Build Docker Image'
       inputs:
         containerRegistry: 'TempDockerRegistry'
         repository: 'tomcat-test'
         command: build
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+      retryCountOnTaskFailure: '2'
         
     - task: Docker@2
+      displayName: 'Push to Docker-Hub'
       inputs:
         containerRegistry: 'TempDockerRegistry'
         repository: 'riaoct30/tomcat-test'
