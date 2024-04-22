@@ -25,20 +25,28 @@ stages:
         mvn clean install
       displayName: 'Maven build'
 
-    - task: Docker@2
-      displayName: 'Login to Docker Hub'
-      inputs:
-        containerRegistry: 'TempDockerRegistry'
-        command: 'login'
+    # - task: Docker@2
+    #   displayName: 'Login to Docker Hub'
+    #   inputs:
+    #     containerRegistry: 'TempDockerRegistry'
+    #     command: 'login'
 
     - task: Docker@2
-      displayName: 'Build and Push Docker Image'
       inputs:
-        containerRegistry: 'TempDockerRegistry'
+        containerRegistry: 'ACRConn'
         repository: 'riaoct30/tomcat-test'
-        command: buildAndPush
+        command: 'buildAndPush'
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
       retryCountOnTaskFailure: '1'
+
+    # - task: Docker@2
+    #   displayName: 'Build and Push Docker Image'
+    #   inputs:
+    #     containerRegistry: 'TempDockerRegistry'
+    #     repository: 'riaoct30/tomcat-test'
+    #     command: buildAndPush
+    #     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+    #   retryCountOnTaskFailure: '1'
 #      inputs: 
 #        containerRegistry: 'TempDockerRegistry'
 #        repository: 'riaoct30/tomcat8-java-webapp'
