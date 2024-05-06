@@ -43,3 +43,14 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "target/*.war"
         target: /tmp/
+    - name: scp ssh pipelines
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      with:
+       host: ${{ secrets.HOST }}
+       user: ${{ secrets.USERNAME }}
+       pass: ${{ secrets.PASSWORD }}
+       port: ${{ secrets.PORT }}
+       scp: |
+        ./target/*.war => /tmp/
+       last_ssh: |
+        ls -lart /tmp
