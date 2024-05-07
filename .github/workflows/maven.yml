@@ -45,3 +45,10 @@ jobs:
         ./target/*.war => /tmp/
        last_ssh: |
         ls -lart /tmp
+    - name: Invoke Jenkins Deployment Job
+      uses: appleboy/jenkins-action@master
+      with:
+        url: "http://104.198.139.137:8080"
+        user: "admin"
+        token: ${{ secrets.JENKINS_TOKEN }}
+        job: "TomcatDeployment"
