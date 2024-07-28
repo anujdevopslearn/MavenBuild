@@ -1,10 +1,30 @@
 ---
-- hosts: webservers
-  vars:
-  - warName: java-example.war
-  - warRemotePath: /var/lib/tomcat9/webapps/
-
+- hosts: linux-servers
   tasks:
-  - name: Copy WAR to Remote server
-    copy: src=target/{{ warName }} dest={{ warRemotePath }}/{{ warName }} owner=tomcat group=tomcat
-   
+    - name: Update repositories cache and install "foo" package
+      apt:
+        update_cache: yes
+
+    - name: Ansible apt install Java
+      apt:
+        name: default-jdk
+        state: present
+
+    - name: Tomcat Package Installation
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - "tomcat10"
+        - "tomcat10-admin"
+
+    - name: Restart Tomcat Service
+      service: name=tomcat10 state=restarted
+
+    - name: Deploy War on Tomcat Server
+      copy:
+       src: java-example.war
+       dest: /var/lib/tomcat10/webapps/
+       owner: tomcat
+       group: tomcat
+       mode: '0755'
