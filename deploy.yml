@@ -23,7 +23,7 @@
 
     - name: Deploy War on Tomcat Server
       copy:
-       src: java-example.war
+       src: target/java-example.war
        dest: /var/lib/tomcat10/webapps/
        owner: tomcat
        group: tomcat
