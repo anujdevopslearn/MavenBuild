@@ -1,30 +1,79 @@
----
-- hosts: all
-  tasks:
-    - name: Update repositories cache and install "foo" package
-      apt:
-        update_cache: yes
+name: CICD pipline with maven and jenkins
 
-    - name: Ansible apt install Java
-      apt:
-        name: default-jdk
-        state: present
+on: [push, workflow_dispatch]
 
-    - name: Tomcat Package Installation
-      apt:
-        name: "{{ item }}"
-        state: present
-      loop:
-        - "tomcat10"
-        - "tomcat10-admin"
+jobs:
 
-    - name: Restart Tomcat Service
-      service: name=tomcat10 state=restarted
+CICDjob:
 
-    - name: Deploy War on Tomcat Server
-      copy:
-       src: target/java-example.war
-       dest: /var/lib/tomcat10/webapps/
-       owner: tomcat
-       group: tomcat
-       mode: '0755'
+runs-on: ubuntu-latest
+
+steps:
+
+- name: clone the repo on ubuntu server
+
+uses: actions/checkout@v4
+
+- name: install java and maven on ubuntu server
+
+uses: actions/setup-java@v3
+
+with:
+
+java-version: 11
+
+cache: 'maven'
+
+distribution: 'temurin'
+
+- name: Build the source code and .war file
+
+run: mvn package
+
+- name: connect to lab and depoloy code on tomcat9
+
+uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+
+with:
+
+host: '3.109.48.70'
+
+port: 22
+
+user: 'labuser'
+
+pass: 'Nuvelabs123$'
+
+connect_timeout: 10s
+
+first_ssh: |
+
+sudo chmod 777 /var/lib/tomcat9/webapps
+
+scp: |
+
+'./target/*.war' => /var/lib/tomcat9/webapps
+
+last_ssh: |
+
+sudo systemctl restart tomcat9
+
+- name: Connect to lab and trigger Jenkins job to deploy code on tomcat9
+
+uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+
+with:
+
+host: '3.109.48.70'
+
+port: 22
+
+user: 'labuser'
+
+pass: 'Nuvelabs123$'
+
+connect_timeout: 10s
+
+first_ssh: |
+
+sudo curl -l -u admin:115593825ca2975f5fdd181a936862d4db
